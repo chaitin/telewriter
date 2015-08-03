@@ -2,14 +2,13 @@
 
   "use strict";
 
-  var Telewrit = function(el, options){
+  var Telewriter = function(el, options){
 
     // chosen element to manipulate text
     this.el = $(el);
-    // options
-    this.options = $.extend({}, $.fn.typed.defaults, options);
 
-    // console.log(this.options);
+    // options
+    this.options = $.extend({}, $.fn.telewriter.defaults, options);
 
     // text content of element
     this.text = this.el.text();
@@ -38,20 +37,20 @@
     this.build();
   }
 
-  Typed.prototype =  {
+  Telewriter.prototype =  {
 
-    constructor: Typed
+    constructor: Telewriter
 
     , init: function(){
       // begin the loop w/ first current string (global self.string)
       // current string will be passed as an argument each time after this
-      var self  = this;
+      var self = this;
       self.typewrite()
     }
 
     , build: function(){
       // Insert cursor
-      this.el.after("<span id=\"typed-cursor\">┃</span>");
+      this.el.after("<span id=\"telewriter-cursor\">┃</span>");
       this.init();
     }
 
@@ -61,7 +60,6 @@
       // varying values for setTimeout during typing
       // can't be global since number changes each time loop is executed
       // var humanize = Math.round(Math.random() * (100 - 30)) + this.speed;
-      var humanize = this.speed;
       var self = this;
 
       // console.log(self.pos, self.dir, self.mark, self.speed);
@@ -85,7 +83,7 @@
           } else {
             self.buffer = self.buffer.substr(0, self.buffer.length-1);
             self.el.text(self.buffer);
-            setTimeout(self.typewrite.bind(this), humanize);
+            setTimeout(self.typewrite.bind(this), self.speed);
           }
         } else {
           self.dir = true;
@@ -123,7 +121,7 @@
           self.pos += 2;
           self.buffer += '^';
           self.el.text(self.buffer);
-          setTimeout(self.typewrite.bind(this), humanize);
+          setTimeout(self.typewrite.bind(this), self.speed);
         } else if (self.input[self.pos+1] == '_') { // sleep
           self.pos += 2;
           setTimeout(self.typewrite.bind(this), self.speed);
@@ -164,17 +162,19 @@
     }
   }
 
-  $.fn.typed = function (option) {
-      return this.each(function () {
-        var $this = $(this)
-          , data = $this.data('typed')
-          , options = typeof option == 'object' && option
-        if (!data) $this.data('typed', (data = new Typed(this, options)))
-        if (typeof option == 'string') data[option]()
-      });
+  $.fn.telewriter = function (option) {
+    return this.each(function () {
+      var $this = $(this)
+        , data = $this.data('telewriter')
+        , options = typeof option == 'object' && option
+      if (!data) $this.data('telewriter', (data = new Telewriter(this, options)))
+      if (typeof option == 'string') data[option]()
+    });
   }
 
-  $.fn.typed.defaults = {
+  $.fn.telewriter.defaults = {
     loop: true
   }
 }(jQuery);
+
+/* vim: set ts=2 sw=2 sts=2: */

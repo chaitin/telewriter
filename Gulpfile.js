@@ -5,10 +5,10 @@ var rename = require('gulp-rename');
 
 gulp.task('minify', function(){
   return gulp.src('src/*.js')
-    .pipe(concat('telewriter.js'))
-    .pipe(gulp.dest('.'))
+    .pipe(concat('telewriter.min.js'))
+    //.pipe(gulp.dest('.'))
     .pipe(uglify())
-    .pipe(rename('telewriter.min.js'))
+    //.pipe(rename('telewriter.min.js'))
     .pipe(gulp.dest("."))
 })
 
