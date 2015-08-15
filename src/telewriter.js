@@ -51,7 +51,7 @@
     , build: function(){
       // Insert cursor
       this.el.after("<span id=\"telewriter-cursor\">┃</span>");
-      this._cursor = $('#typed-cursor')
+      this._cursor = $('#telewriter-cursor')
       this.init();
     }
 
