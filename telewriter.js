@@ -6,9 +6,10 @@
 
     // chosen element to manipulate text
     this.el = $(el);
-
     // options
     this.options = $.extend({}, $.fn.telewriter.defaults, options);
+
+    // console.log(this.options);
 
     // text content of element
     this.text = this.el.text();
@@ -50,7 +51,7 @@
 
     , build: function(){
       // Insert cursor
-      this.el.after("<span id=\"telewriter-cursor\">┃</span>");
+      this.el.after('<span class="cursor" id="typed-cursor">┃</span>');
       this._cursor = $('#typed-cursor')
       this.init();
     }
@@ -74,6 +75,7 @@
       // varying values for setTimeout during typing
       // can't be global since number changes each time loop is executed
       // var humanize = Math.round(Math.random() * (100 - 30)) + this.speed;
+      var humanize = this.speed;
       var self = this;
 
       // console.log(self.pos, self.dir, self.mark, self.speed);
@@ -96,7 +98,7 @@
           } else {
             self.buffer = self.buffer.substr(0, self.buffer.length-1);
             self.el.text(self.buffer);
-            self.tick(self.typewrite.bind(this), self.speed);
+            self.tick(self.typewrite.bind(this), humanize);
           }
         } else {
           self.dir = true;
@@ -134,7 +136,7 @@
           self.pos += 2;
           self.buffer += '^';
           self.el.text(self.buffer);
-          self.tick(self.typewrite.bind(this), self.speed);
+          self.tick(self.typewrite.bind(this), humanize);
         } else if (self.input[self.pos+1] == '_') { // sleep
           self.pos += 2;
           self.tick(self.typewrite.bind(this), self.speed);
@@ -203,18 +205,16 @@
   }
 
   $.fn.telewriter = function (option) {
-    return this.each(function () {
-      var $this = $(this)
-        , data = $this.data('telewriter')
-        , options = typeof option == 'object' && option
-      if (!data) $this.data('telewriter', (data = new Telewriter(this, options)))
-      if (typeof option == 'string') data[option]()
-    });
+      return this.each(function () {
+        var $this = $(this)
+          , data = $this.data('telewriter')
+          , options = typeof option == 'object' && option
+        if (!data) $this.data('telewriter', (data = new Telewriter(this, options)))
+        if (typeof option == 'string') data[option]()
+      });
   }
 
   $.fn.telewriter.defaults = {
     loop: true
   }
 }(jQuery);
-
-/* vim: set ts=2 sw=2 sts=2: */
