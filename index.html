@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Telewriter.js</title>
+    <link rel="stylesheet" href="style.css">
+    <link href='http://fonts.googleapis.com/css?family=Merriweather:400,300italic' rel='stylesheet' type='text/css'>
+</head>
+<body>
+    <a href="https://github.com/chaitin/telewriter"><img style="position: absolute; top: 0; left: 0; border: 0;" src="https://camo.githubusercontent.com/c6625ac1f3ee0a12250227cf83ce904423abf351/68747470733a2f2f73332e616d617a6f6e6177732e636f6d2f6769746875622f726962626f6e732f666f726b6d655f6c6566745f677261795f3664366436642e706e67" alt="Fork me on GitHub" data-canonical-src="https://s3.amazonaws.com/github/ribbons/forkme_left_gray_6d6d6d.png"></a>
+    <h1>Telewriter.js</h1>
+    <h2>Another jQuery typing animation script.</h2>
+    <div class="wrapper">
+        <div class="testbox">
+            <div class="header">
+                <div class="close"></div>
+                <div class="min"></div>
+                <div class="max"></div>
+            </div>
+            <div class="content"><span></span></div>
+        </div>
+    </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+    <script src="telewriter.js"></script>
+    <script>
+    $(function(){
+        $(".content span").telewriter({
+            input: "^50^It was the best of time\n^300^^_"+
+            "^50^It was the ^300^^_^50^^_worst of times\n^300^^_"+
+            "^50^It was the age of wisdom\n^300^^_"+
+            "^50^It was the age of foolishness\n^300^^_"+
+            "^50^It was the epoch of belief\n^300^^_"+
+            "^50^It was the epoch of incredulity\n^300^^_"+
+            "^50^It was the season of Light\n^300^^_"+
+            "^50^It was the season of Darkness\n^300^^_"+
+            "^50^It was the spring of hope\n^300^^_"+
+            "^50^It was the winter of despair\n^300^^_"+
+            "^50^We had everything before us\n^300^^_"+
+            "^50^We had nothing before us\n^500^^_"+
+            "^50^We were all going direct to Heaven\n^500^^_"+
+            "^50^We were all going direct the other way^5000^^_"
+
+        })
+    })
+    </script>
+</body>
+</html>
